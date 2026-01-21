@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rajkamal | Portfolio - Data Analyst & Finance Professional</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3a0a3a;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --dark-bg: #faf8fb;
+            --darker-bg: #deb4cd;
+            --card-bg: #dacbfd;
+            --text-light: #1c031c;
+            --text-muted: #070707;
+            --border-color: #334155;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Header - UPDATED FOR WHITE MENU TEXT */
+        header {
+            background-color: rgba(58, 10, 58, 0.95); /* Dark purple background */
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 5%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white !important; /* White logo */
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #dacbfd !important; /* Light purple for span */
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        /* MENU TEXT WHITE - THIS IS THE FIX */
+        .nav-links a {
+            color: white !important; /* White text for menu */
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #dacbfd !important; /* Light purple on hover */
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #dacbfd; /* Light purple underline */
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white !important; /* White menu button */
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Mobile menu background - also updated */
+        @media (max-width: 768px) {
+            .nav-links {
+                background-color: rgba(58, 10, 58, 0.98); /* Dark purple for mobile menu */
+            }
+            
+            .nav-links a {
+                color: white !important;
+            }
+        }
+
+        /* Rest of your CSS remains the same... */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 6rem 5% 4rem;
+            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0) 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-text h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .profile-image-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .profile-image {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid var(--card-bg);
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 2;
+        }
+
+        .image-frame {
+            position: absolute;
+            width: 340px;
+            height: 340px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            animation: rotate 10s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.9rem 1.8rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+       
+        .social-icon {                          
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--card-bg);
+            color: var(--text-light);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+            background-color: var(--primary);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 5%;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .skill-category h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-category ul {
+            list-style-type: none;
+        }
+
+        .skill-category li {
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .skill-category li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+
+        /* Work Section */
+        .work-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            padding: 0.7rem 1.5rem;
+            background-color: var(--card-bg);
+            color: var(--text-light);
+            border: none;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-category {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background-color: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .project-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .project-card p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .project-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .project-link:hover {
+            gap: 0.8rem;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .contact-info h3 {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(16, 185, 129, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+
+        .contact-details h4 {
+            color: var(--text-light);
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-details p {
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--darker-bg);
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+            
+            .hero-text p {
+                max-width: 100%;
+            }
+            
+            .cta-buttons {
+                justify-content: center;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 5%;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                background-color: rgba(58, 10, 58, 0.98); /* Dark purple */
+                flex-direction: column;
+                padding: 2rem;
+                transition: left 0.3s ease;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-text h2 {
+                font-size: 1.5rem;
+            }
+            
+            .profile-image {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .image-frame {
+                width: 270px;
+                height: 270px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .profile-image {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .image-frame {
+                width: 220px;
+                height: 220px;
+            }
+            
+            section {
+                padding: 3rem 5%;
+            }
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .focus-visible:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Loading Animation */
+        .loading {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .loading.loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="#home" class="logo">Raj<span>kamal</span></a>
+        
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Toggle menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <nav class="nav-links" id="navLinks">
+            <a href="#home" class="focus-visible">Home</a>
+            <a href="#about" class="focus-visible">About</a>
+            <a href="#skills" class="focus-visible">Skills</a>
+            <a href="#work" class="focus-visible">Work</a>
+            <a href="#contact" class="focus-visible">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Rest of your HTML remains exactly the same -->
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Rajkamal</h1>
+                <h2>Commerce Graduate | Data Analyst | Finance & Technology Enthusiast</h2>
+                <p>I bring a unique blend of <span class="highlight">financial expertise</span> and <span class="highlight">technical skills</span> to the table. Proficient in data analysis, programming, and creative design with a passion for solving complex problems.</p>
+                
+                <div class="cta-buttons">
+                    <a href="#work" class="btn btn-primary focus-visible">
+                        <i class="fas fa-briefcase"></i> View My Work
+                    </a>
+                    <a href="#contact" class="btn btn-secondary focus-visible">
+                        <i class="fas fa-envelope"></i> Contact Me
+                    </a>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://instagram.com/raj_toyaj?igsh=ZDhlaWdxbXdqamZ5" target="_blank" class="social-icon focus-visible" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://wa.me/9120997721" target="_blank" class="social-icon focus-visible" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="social-icon focus-visible" aria-label="Twitter">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/X_icon_2.svg" alt="X" width ="22" height="22" align="center">
+                    </a>
+
+                    <a href="https://linkedin.com/in/your-username" target="_blank" class="social-icon focus-visible" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/Rajkamal420-web" target="_blank" class="social-icon focus-visible" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="profile-image-container">
+                <div class="image-frame"></div>
+                <img src="projects/rajkamal.jpeg" alt="Rajkamal Profile Picture" class="profile-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="loading">
+        <h2 class="section-title">About Me</h2>
+        
+        <div class="about-content">
+            <div class="about-text">
+                <p>I'm a commerce graduate from Siddhartha University, Kapilvastu, with a strong foundation in financial principles and a growing expertise in technology. My academic journey has equipped me with proficiency in data analysis, Excel, PowerPoint, Tally, and various office software applications.</p>
+                
+                <p>My technical skill set includes programming languages such as C, Python, and SQL, along with web development fundamentals in HTML and CSS. This combination of finance and technology knowledge allows me to bridge the gap between business needs and technical solutions.</p>
+                
+                <p>When I'm not analyzing data or writing code, I channel my creativity into editing projects. Whether it's video editing, graphic design, or creating engaging presentations, I enjoy the process of bringing ideas to life visually.</p>
+            </div>
+            
+            <div class="skills-container" id="skills">
+                <div class="skill-category">
+                    <h4>Data & Analytics</h4>
+                    <ul>
+                        <li>Excel & Advanced Formulas</li>
+                        <li>PowerPoint Presentations</li>
+                        <li>MIS Reporting</li>
+                        <li>Data Visualization</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Programming</h4>
+                    <ul>
+                        <li>Python</li>
+                        <li>C Programming</li>
+                        <li>SQL Databases</li>
+                        <li>HTML/CSS</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Finance & Tools</h4>
+                    <ul>
+                        <li>Tally Prime</li>
+                        <li>MS Office Suite</li>
+                        <li>Financial Analysis</li>
+                        <li>Accounting Principles</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Creative Design</h4>
+                    <ul>
+                        <li>Video Editing</li>
+                        <li>Photoshop</li>
+                        <li>Graphic Design</li>
+                        <li>Content Creation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Section -->
+    <section id="work" class="loading">
+        <h2 class="section-title">My Work</h2>
+        
+        <div class="work-filter">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="office">MS Office</button>
+            <button class="filter-btn" data-filter="coding">Coding</button>
+            <button class="filter-btn" data-filter="editing">Editing</button>
+            <button class="filter-btn" data-filter="finance">Finance</button>
+        </div>
+        
+        <div class="projects-grid">
+            <!-- MS Office Projects -->
+            <div class="project-card" data-category="office">
+                <div class="project-content">
+                    <span class="project-category">MS Office</span>
+                    <h3>Excel MIS Report Dashboard</h3>
+                    <p>Advanced Excel dashboard with comprehensive data analysis, formulas, pivot tables, and interactive reports for business intelligence.</p>
+                    <a href="projects/excel.xlsx" target="_blank" class="project-link focus-visible">
+                        View Project <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="project-card" data-category="office">
+                <div class="project-content">
+                    <span class="project-category">MS Office</span>
+                    <h3>Business Presentation Template</h3>
+                    <p>Modern, professional PowerPoint template designed for business meetings, investor pitches, and corporate presentations.</p>
+                    <a href="projects/Presentation1.pptx" target="_blank" class="project-link focus-visible">
+                        View Project <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Coding Projects -->
+            <div class="project-card" data-category="coding">
+                <div class="project-content">
+                    <span class="project-category">Coding</span>
+                    <h3>Portfolio Website</h3>
+                    <p>Fully responsive portfolio website built with HTML, CSS, and JavaScript showcasing web development and design skills.</p>
+                    <a href="projects/website.html" target="_blank" class="project-link focus-visible">
+                        View Project <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="project-card" data-category="coding">
+                <div class="project-content">
+                    <span class="project-category">Coding</span>
+                    <h3>Python Data Analysis Tool</h3>
+                    <p>Python application for data processing and visualization with Pandas and Matplotlib libraries. (Coming Soon)</p>
+                    <a href="projects/python-app.html" target="_blank" class="project-link focus-visible">
+                        View Project <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Editing Projects -->
+            <div class="project-card" data-category="editing">
+                <div class="project-content">
+                    <span class="project-category">Editing</span>
+                    <h3>Promotional Video Editing</h3>
+                    <p>Professionally edited promotional video featuring smooth transitions, color grading, and engaging motion graphics.</p>
+                    <a href="projects/demo-video.mp4" target="_blank" class="project-link focus-visible">
+                        View Project <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="project-card" data-category="editing">
+                <div class="project-content">
+                    <span class="project-category">Editing</span>
+                    <h3>Social Media Banner Designs</h3>
+                    <p>Collection of eye-catching banner designs for social media marketing campaigns and brand promotion.</p>
+                    <a href="projects/banner.jpg" target="_blank" class="project-link focus-visible">
+                        View Project <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Finance Projects -->
+            <div class="project-card" data-category="finance">
+                <div class="project-content">
+                    <span class="project-category">Finance</span>
+                    <h3>TallyPrime Financial Reports</h3>
+                    <p>Comprehensive financial portfolio including GST reports, stock summaries, trial balances, and profit/loss statements.</p>
+                    <a href="projects/tally.pdf" target="_blank" class="project-link focus-visible">
+                        View Project <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="project-card" data-category="editing">
+                <div class="project-content">
+                    <span class="project-category">Editing</span>
+                    <h3>Photoshop Design Portfolio</h3>
+                    <p>Collection of graphic design work showcasing Photoshop skills, photo manipulation, and creative design capabilities.</p>
+                    <a href="projects/photoshop.pdf" target="_blank" class="project-link focus-visible">
+                        View Project <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="loading">
+        <h2 class="section-title">Get In Touch</h2>
+        
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Email</h4>
+                        <p>pr9077168@gmail.com</p>
+                        <p>rajkamal0706@hotmail.com</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Phone</h4>
+                        <p>+91 91209 97721</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Location</h4>
+                        <p>Gorakhpur, Uttar Pradesh, India</p>
+                    </div>
+                </div>
+                
+                <div class="social-links" style="margin-top: 2rem;">
+                    <a href="https://instagram.com/raj_toyaj?igsh=ZDhlaWdxbXdqamZ5" target="_blank" class="social-icon focus-visible" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://wa.me/9120997721" target="_blank" class="social-icon focus-visible" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="social-icon focus-visible" aria-label="Twitter">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/X_icon_2.svg" alt="X" width ="22" height="22" align="center">
+                    </a>
+                    <a href="https://linkedin.com/in/your-username" target="_blank" class="social-icon focus-visible" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="contact-info">
+                <h3>Professional Summary</h3>
+                <p>I'm currently seeking opportunities where I can apply my unique combination of financial acumen and technical skills. Whether it's data analysis, financial reporting, or creative design work, I'm eager to contribute to innovative projects.</p>
+                
+                <p style="margin-top: 1rem;">Feel free to reach out for collaboration, freelance work, or full-time opportunities. I'm particularly interested in roles that bridge finance and technology.</p>
+                
+                <div class="cta-buttons" style="margin-top: 2rem;">
+                    <a href="mailto:pr9077168@gmail.com" class="btn btn-primary focus-visible" style="width: 100%; text-align: center;">
+                        <i class="fas fa-paper-plane"></i> Send Email
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Rajkamal</div>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Commerce Graduate | Data Analyst | Finance & Technology Enthusiast | Creative Editor</p>
+            
+            <div class="social-links" style="justify-content: center; margin: 2rem 0;">
+                <a href="https://instagram.com/raj_toyaj?igsh=ZDhlaWdxbXdqamZ5" target="_blank" class="social-icon focus-visible" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/9120997721" target="_blank" class="social-icon focus-visible" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://linkedin.com/in/your-username" target="_blank" class="social-icon focus-visible" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/Rajkamal420-web" target="_blank" class="social-icon focus-visible" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 Rajkamal. All Rights Reserved. | Designed with HTML, CSS & JavaScript
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Project filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const filterValue = btn.getAttribute('data-filter');
+                
+                // Show/hide projects based on filter
+                projectCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+        
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('loaded');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements with loading class
+        document.querySelectorAll('.loading').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Form submission handling (placeholder)
+        const contactForm = document.querySelector('form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! I will get back to you soon.');
+                this.reset();
+            });
+        }
+        
+        // Initialize animations on page load
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.loading').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight) {
+                    el.classList.add('loaded');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
