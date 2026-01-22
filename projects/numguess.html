@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #4df8d0 0%, #3341a0 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .game-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #240458;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            color: #fe0202;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .game-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .attempts {
+            font-size: 1.2em;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button {
+            background: linear-gradient(135deg, #060606 0%, #000000 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-weight: bold;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .message.high {
+            background: #ffe5e5;
+            color: #c92a2a;
+        }
+
+        .message.low {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .message.win {
+            background: #d4edda;
+            color: #155724;
+            font-size: 1.3em;
+        }
+
+        .message.error {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .restart-btn {
+            margin-top: 20px;
+            background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+            display: none;
+        }
+
+        .restart-btn.show {
+            display: inline-block;
+        }
+
+        .thank-you-message {
+            margin-top: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            display: none;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        .thank-you-message.show {
+            display: block;
+        }
+
+        .thank-you-message p {
+            color: white;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .thank-you-message .name {
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 1.3em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>🎯 Number Guessing Game</h1>
+        <p class="subtitle">Game from Rajkamal (+91 9120997721) portfolio</p>
+        <p class="subtitle"><b>Guess a number between 1 and 100</b></p>
+        
+        <div class="game-info">
+            <div class="attempts">Attempts: <span id="attemptCount">0</span></div>
+        </div>
+
+        <div class="input-group">
+            <input type="number" id="guessInput" placeholder="Enter your guess" min="1" max="100">
+        </div>
+
+        <button id="guessBtn" onclick="makeGuess()">Submit Guess</button>
+        
+        <div id="message" class="message"></div>
+        
+        <button class="restart-btn" id="restartBtn" onclick="restartGame()">Play Again</button>
+
+        <div class="thank-you-message" id="thankYouMessage">
+            <p>✨ Thank you for visiting <span class="name">Rajkamal's</span> portfolio! ✨</p>
+        </div>
+    </div>
+
+    <script>
+        let originalNum = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+        let gameWon = false;
+
+        function makeGuess() {
+            if (gameWon) return;
+
+            const guessInput = document.getElementById('guessInput');
+            const message = document.getElementById('message');
+            const attemptCount = document.getElementById('attemptCount');
+            const restartBtn = document.getElementById('restartBtn');
+            const thankYouMessage = document.getElementById('thankYouMessage');
+            
+            const guess = parseInt(guessInput.value);
+
+            if (isNaN(guess) || guess < 1 || guess > 100) {
+                message.className = 'message error';
+                message.textContent = 'Invalid input! Please enter a whole number between 1 and 100.';
+                return;
+            }
+
+            attempts++;
+            attemptCount.textContent = attempts;
+
+            if (guess > originalNum) {
+                message.className = 'message high';
+                message.textContent = '📉 Too high! Try a lower number.';
+            } else if (guess < originalNum) {
+                message.className = 'message low';
+                message.textContent = '📈 Too low! Try a higher number.';
+            } else {
+                message.className = 'message win';
+                message.textContent = `🎉 Congratulations! You won in ${attempts} attempt${attempts > 1 ? 's' : ''}!`;
+                gameWon = true;
+                guessInput.disabled = true;
+                restartBtn.classList.add('show');
+                thankYouMessage.classList.add('show');
+            }
+
+            guessInput.value = '';
+            guessInput.focus();
+        }
+
+        function restartGame() {
+            originalNum = Math.floor(Math.random() * 100) + 1;
+            attempts = 0;
+            gameWon = false;
+            
+            document.getElementById('attemptCount').textContent = '0';
+            document.getElementById('message').textContent = '';
+            document.getElementById('message').className = 'message';
+            document.getElementById('guessInput').disabled = false;
+            document.getElementById('guessInput').value = '';
+            document.getElementById('restartBtn').classList.remove('show');
+            document.getElementById('thankYouMessage').classList.remove('show');
+            document.getElementById('guessInput').focus();
+        }
+
+        // Allow Enter key to submit
+        document.getElementById('guessInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                makeGuess();
+            }
+        });
+
+        // Focus input on load
+        document.getElementById('guessInput').focus();
+    </script>
+</body>
+</html>
