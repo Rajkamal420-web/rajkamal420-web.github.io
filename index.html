@@ -653,6 +653,23 @@
             opacity: 1;
             transform: translateY(0);
         }
+        /* Secret Heart Icon Styling */
+.secret-heart {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 0.7rem; /* Kaafi chota size taaki dhyan na jaye */
+    color: var(--text-muted); /* Text ke color jaisa taaki merge ho jaye */
+    opacity: 0.4; /* Thoda transparent */
+    transition: var(--transition);
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+.secret-heart:hover {
+    opacity: 1;
+    color: #ff4d4d; /* Hover karne par red color ka ho jayega */
+    transform: scale(1.2);
+}
     </style>
 </head>
 <body>
@@ -815,9 +832,9 @@
             <div class="project-card" data-category="coding">
                 <div class="project-content">
                     <span class="project-category">Coding</span>
-                    <h3>3D Live Interaction</h3>
+                    <h3>Portfolio Website</h3>
                     <p>Fully responsive portfolio website built with HTML, CSS, and JavaScript showcasing web development and design skills.</p>
-                    <a href="projects/three.html" target="_blank" class="project-link focus-visible">
+                    <a href="projects/website.html" target="_blank" class="project-link focus-visible">
                         View Project <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -826,8 +843,8 @@
             <div class="project-card" data-category="coding">
                 <div class="project-content">
                     <span class="project-category">Coding</span>
-                    <h3>Number Gussing</h3>
-                    <p>Python application Game</p>
+                    <h3>Python Data Analysis Tool</h3>
+                    <p>Python application for data processing and visualization with Pandas and Matplotlib libraries. (Coming Soon)</p>
                     <a href="projects/numguess.html" target="_blank" class="project-link focus-visible">
                         View Project <i class="fas fa-arrow-right"></i>
                     </a>
@@ -977,6 +994,13 @@
                 &copy; 2023 Rajkamal. All Rights Reserved. | Designed with HTML, CSS & JavaScript
             </div>
         </div>
+        <div class="copyright">
+    &copy; 2023 Rajkamal. All Rights Reserved. | Designed with HTML, CSS & JavaScript
+    
+    <a href="projects/su.html" class="secret-heart" aria-label="Secret link">
+        <i class="fas fa-heart"></i>
+    </a>
+</div>
     </footer>
 
     <script>
